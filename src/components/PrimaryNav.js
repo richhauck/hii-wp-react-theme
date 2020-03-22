@@ -25,6 +25,7 @@ class PrimaryNav extends Component{
         }else{
             return(
                 <nav>
+                    <strong>Primary Nav</strong>
                     <ul>
                         {links.map(link => {
                             if(link.post_status === 'publish'){
