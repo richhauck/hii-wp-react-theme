@@ -1,4 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HII WP React Theme
+
+Sometimes, you just have to take the journey yourself...
+
+This is an in-progress client-side headless WordPress theme in React. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It uses [React Router](https://reacttraining.com/react-router/), [React Helmet](https://github.com/nfl/react-helmet), and styling via [Styled Components](https://styled-components.com/).
+
+It creates a navigation based on WordPress's appearance menu and generates pages and posts. 
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Available Scripts](#available)
+- [To-Dos](#todos)
+
+## Installation
+
+1. Download this project directory.
+2. Modify the `window.$baseURL` in App.js L12. to the URL of your WordPress install. 
+3. In the WordPress admin, ensure you have defined a menu under Appearance > Menus and assigned it to the location of "Primary". This build pulls the menu into the nav.
+4. WordPress Admin > Settings: Common Settings set to "Post Name", as API calls are built with slugs.
+5. In functions.php, register your nav menu and add the function below, which creates a custom API endpoint for navigation.
+
+```
+register_nav_menus( array(
+    'menu-1' => esc_html__( 'Primary', 'text-domain' ),
+));
+
+function wp_menu_route() {
+		
+	// using register_nav_menus primary menu name -> 'menu-1'
+	$menuID = $menuLocations['menu-1'];
+	$primaryNav = wp_get_nav_menu_items($menuID);
+	foreach ($primaryNav as $link) {
+		
+		// Ensure slug isn't an external link and add to payload
+		$url = $link->url;
+		$slug = (strpos($url, 'http') !== false) ? basename($url) : $url;
+		$link->slug = $slug;
+	}
+	return $primaryNav;
+}
+	// Create custom endpoint at yourwpdomain.com/wp-json/menu
+	add_action( 'rest_api_init', function () {
+		register_rest_route( 'nav', '/menu', array(
+		'methods' => 'GET',
+		'callback' => 'wp_menu_route',
+	));
+});
+```
 
 ## Available Scripts
 
@@ -37,32 +86,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## To-Dos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Refine navigation to handle external links and parent-child relationships
+- Modify Helmet to accept other meta data
+- Fix history with routing
+- Cache data in some sort of state to eliminate redundant API requests
