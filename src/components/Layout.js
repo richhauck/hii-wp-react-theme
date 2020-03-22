@@ -3,7 +3,7 @@ import PrimaryNav from './PrimaryNav';
 import {Helmet} from "react-helmet";
 
 export default ({ pageTitle, children }) => (
-<>
+<main>
     <Helmet>
         <title>{`${pageTitle} | My Website`}</title>
     </Helmet>
@@ -17,5 +17,5 @@ export default ({ pageTitle, children }) => (
     </div>
 
     <footer>&copy; {`${new Date().getFullYear()}`}</footer>
-</>
+</main>
 )

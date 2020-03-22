@@ -37,7 +37,6 @@ class Post extends Component{
                 <Layout pageTitle={postData.title.rendered}>
                     <h1>{postData.title.rendered}</h1>
                     <p>{postDate}</p>
-                    <hr/>
                     <div dangerouslySetInnerHTML={{__html:postData.content.rendered}}></div>
                 </Layout>
             )

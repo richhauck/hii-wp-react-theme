@@ -34,8 +34,6 @@ class Page extends Component{
             return(
                 <Layout pageTitle={pageData.title.rendered}>
                     <h1>{pageData.title.rendered}</h1>
-                    <p>{pageData.date}</p>
-                    <hr/>
                     <div dangerouslySetInnerHTML={{__html:pageData.content.rendered}}></div>
                 </Layout>
             )

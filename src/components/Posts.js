@@ -27,7 +27,7 @@ class Posts extends Component{
         }else{
             return(
                 <Layout pageTitle="Posts">
-                    <h2><Link to="/posts">Posts</Link></h2>
+                    <h1>Posts</h1>
                     <ul>
                         {posts.map(post => {
                             if(post.status === 'publish'){

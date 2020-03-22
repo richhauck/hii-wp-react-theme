@@ -28,7 +28,7 @@ class Pages extends Component{
             return(
                 <Layout pageTitle="pages">
                 <Helmet title="Pages" />
-                <h2><Link to="/pages">Pages</Link></h2>
+                <h1>Pages</h1>
                     <ul>
                         {pages.map(page => {
                             if(page.status === 'publish'){
