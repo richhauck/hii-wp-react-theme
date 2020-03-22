@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Layout from './Layout'
 import axios from 'axios';
 import {Link, useParams} from "react-router-dom";
+import Moment from "moment"
 /**
  * Displays single post
 */
@@ -31,10 +32,11 @@ class Post extends Component{
             return <Layout>Loading</Layout>
         }else{
             const postData = data[0];
+            const postDate = Moment(postData.date).format('MMMM Do YYYY, h:mm:ss a');
             return(
                 <Layout pageTitle={postData.title.rendered}>
                     <h1>{postData.title.rendered}</h1>
-                    <p>{postData.date}</p>
+                    <p>{postDate}</p>
                     <hr/>
                     <div dangerouslySetInnerHTML={{__html:postData.content.rendered}}></div>
                 </Layout>
