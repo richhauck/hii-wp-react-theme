@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import PrimaryNav from './components/PrimaryNav';
 import Home from './components/Home';
 import Pages from './components/Pages';
 import Page from './components/Page';
@@ -9,19 +8,13 @@ import Post from './components/Post';
 import NoMatch from './components/NoMatch';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
+
 window.$baseURL = 'http://wordpress.test';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-
-        <header>
-          <PrimaryNav/>
-        </header>
-
-        <div id="content">
-        
           <Switch>
             <Route exact path="/" component={Home} /> 
             <Route path="/posts/:slug" component={Post}/>
@@ -30,9 +23,6 @@ function App() {
             <Route path="/:slug" component={Page}/>
             <Route path="*" component={NoMatch} />
           </Switch>
-
-        </div>
-
       </div>
     </BrowserRouter>
   );

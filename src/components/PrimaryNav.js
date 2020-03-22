@@ -27,7 +27,7 @@ class PrimaryNav extends Component{
         }else{
             return(
                 <nav>
-                    <strong>Primary Nav</strong> 
+                    <strong>Primary Nav: </strong> 
                     <Link to="/">Home</Link> | <Link to="/pages">Pages</Link> | <Link to="/posts">Posts</Link>
                     <ul>
                         {links.map(link => {

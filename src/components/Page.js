@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import Layout from './Layout'
 import axios from 'axios';
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 class Page extends Component{
     state = {
         data: {},
@@ -26,17 +27,17 @@ class Page extends Component{
     render(){
         const {data, isLoaded} = this.state;
         if(!isLoaded){
-            return <>Loading</>
+            return <Layout>Loading</Layout>
         }else{
             const pageData = data[0];
 
             return(
-                <div id="page">
+                <Layout pageTitle={pageData.title.rendered}>
                     <h1>{pageData.title.rendered}</h1>
                     <p>{pageData.date}</p>
                     <hr/>
                     <div dangerouslySetInnerHTML={{__html:pageData.content.rendered}}></div>
-                </div>
+                </Layout>
             )
         }
     }

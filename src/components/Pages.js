@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+import Layout from './Layout';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet";
 /**
  * Generates List of Page Links
 */
@@ -21,10 +23,11 @@ class Pages extends Component{
     render(){
         const {pages, isLoaded} = this.state;
         if(!isLoaded){
-            return <>Loading</>
+            return <Layout pageTitle="pages">Loading</Layout>
         }else{
             return(
-                <div id="pages">
+                <Layout pageTitle="pages">
+                <Helmet title="Pages" />
                 <h2><Link to="/pages">Pages</Link></h2>
                     <ul>
                         {pages.map(page => {
@@ -36,7 +39,7 @@ class Pages extends Component{
                         }    
                     )}
                     </ul>
-                </div>
+                </Layout>
             )
         }
     }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+import Layout from './Layout'
 import axios from 'axios';
 import {Link} from "react-router-dom";
+
 /**
  * Generates List of Post Links
 */
@@ -20,12 +22,11 @@ class Posts extends Component{
     }
     render(){
         const {posts, isLoaded} = this.state;
-        console.log('posts', posts)
         if(!isLoaded){
-            return <>Loading</>
+            return <Layout>Loading</Layout>
         }else{
             return(
-                <div id="posts">
+                <Layout pageTitle="Posts">
                     <h2><Link to="/posts">Posts</Link></h2>
                     <ul>
                         {posts.map(post => {
@@ -38,7 +39,7 @@ class Posts extends Component{
                         }    
                     )}
                     </ul>
-                </div>
+                </Layout>
             )
         }
     }

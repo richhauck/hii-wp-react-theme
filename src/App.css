@@ -1,16 +1,25 @@
+:root {
+  --base-padding: 1em;
+}
+
 body{
   background-color: #ccc;
 }
 nav{
-  padding: 1em;
+  padding: var(--base-padding);
   background-color: #666;
 }
 #content{
-  padding: 1em;
+  padding: var(--base-padding);
 }
 
 #content > div{
-  padding: 1em;
-  margin-bottom: 1em;
+  padding: var(--base-padding);
+  margin-bottom: var(--base-padding);;
   background-color: #fff;
+}
+
+footer{
+  background-color: #666;
+  padding: var(--base-padding);
 }

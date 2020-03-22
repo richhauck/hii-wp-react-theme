@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Layout from './Layout'
 import axios from 'axios';
 import {Link, useParams} from "react-router-dom";
 /**
@@ -27,16 +28,16 @@ class Post extends Component{
     render(){
         const {data, isLoaded} = this.state;
         if(!isLoaded){
-            return <>Loading</>
+            return <Layout>Loading</Layout>
         }else{
             const postData = data[0];
             return(
-                <div id="post">
+                <Layout pageTitle={postData.title.rendered}>
                     <h1>{postData.title.rendered}</h1>
                     <p>{postData.date}</p>
                     <hr/>
                     <div dangerouslySetInnerHTML={{__html:postData.content.rendered}}></div>
-                </div>
+                </Layout>
             )
         }
     }
