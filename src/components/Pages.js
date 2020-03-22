@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import {Link} from "react-router-dom";
 /**
- * Generates navigation based on Primary Nav defined in WP admin
+ * Generates List of Page Links
 */
 class Pages extends Component{
     
@@ -19,24 +20,23 @@ class Pages extends Component{
     }
     render(){
         const {pages, isLoaded} = this.state;
-        console.log('pages', pages)
         if(!isLoaded){
             return <>Loading</>
         }else{
             return(
-                <>
-                    <h1>Pages</h1>
+                <div id="pages">
+                <h2><Link to="/pages">Pages</Link></h2>
                     <ul>
                         {pages.map(page => {
                             if(page.status === 'publish'){
                                 return(
-                                    <li key={page.ID}><a href={page.slug}>{page.title.rendered} ({page.date})</a></li>
+                                    <li key={page.ID}><Link to={page.slug}>{page.title.rendered}</Link></li>
                                 )
                             }
                         }    
                     )}
                     </ul>
-                </>
+                </div>
             )
         }
     }

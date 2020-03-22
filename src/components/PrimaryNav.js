@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import {Link} from "react-router-dom";
+
 /**
  * Generates navigation based on Primary Nav defined in WP admin
 */
@@ -25,12 +27,14 @@ class PrimaryNav extends Component{
         }else{
             return(
                 <nav>
-                    <strong>Primary Nav</strong>
+                    <strong>Primary Nav</strong> 
+                    <Link to="/">Home</Link> | <Link to="/pages">Pages</Link> | <Link to="/posts">Posts</Link>
                     <ul>
                         {links.map(link => {
-                            if(link.post_status === 'publish'){
+                            if(link.post_parent == 0){
+                                console.log('slug: ', link.slug)
                                 return(
-                                    <li key={link.ID}><a href={link.post_name}>{link.title}</a></li>
+                                    <li key={link.ID}><Link to={'/'+link.slug}>{link.title}</Link></li>
                                 )
                             }
                         }    

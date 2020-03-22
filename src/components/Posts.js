@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios';
+import {Link} from "react-router-dom";
 /**
- * Generates navigation based on Primary Nav defined in WP admin
+ * Generates List of Post Links
 */
 class Posts extends Component{
     
@@ -24,20 +25,20 @@ class Posts extends Component{
             return <>Loading</>
         }else{
             return(
-                <>
-                    <h1>Posts</h1>
+                <div id="posts">
+                    <h2><Link to="/posts">Posts</Link></h2>
                     <ul>
                         {posts.map(post => {
                             if(post.status === 'publish'){
                                 const link = 'posts/' + post.slug;
                                 return(
-                                    <li key={post.ID}><a href={link}>{post.title.rendered} ({post.date})</a></li>
+                                    <li key={post.ID}><Link to={link}>{post.title.rendered}</Link></li>
                                 )
                             }
                         }    
                     )}
                     </ul>
-                </>
+                </div>
             )
         }
     }
