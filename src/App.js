@@ -1,11 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import PrimaryNav from './components/PrimaryNav';
+import Posts from './components/Posts';
+
+window.$baseURL = 'http://wordpress.test';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <PrimaryNav/>
+        <Posts/>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
