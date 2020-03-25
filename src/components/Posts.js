@@ -23,10 +23,10 @@ class Posts extends Component{
     render(){
         const {posts, isLoaded} = this.state;
         if(!isLoaded){
-            return <Layout>Loading</Layout>
+            return <Layout pageMeta={{title: "Posts"}}>Loading</Layout>
         }else{
             return(
-                <Layout pageTitle="Posts">
+                <Layout pageMeta={{title: "Posts"}}>
                     <h1>Posts</h1>
                     <ul>
                         {posts.map(post => {

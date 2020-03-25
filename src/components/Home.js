@@ -5,7 +5,12 @@ import Pages from './Pages'
 class Home extends Component{
     render(){
         return (
-            <Layout pageTitle="Home">
+            <Layout pageMeta={{
+                title: "Home",
+                keywords: ["home", "page"],
+                description: "description goes here",
+                pageClass: "home"
+              }}>
                 <h1>Home</h1>
             </Layout>
         )

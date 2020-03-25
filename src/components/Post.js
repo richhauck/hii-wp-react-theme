@@ -36,7 +36,7 @@ class Post extends Component{
                 year: "numeric"
             });
             return(
-                <Layout pageTitle={postData.title.rendered}>
+                <Layout pageMeta={{title: `${postData.title.rendered}`}}>
                     <h1>{postData.title.rendered}</h1>
                     <p>{postDate}</p>
                     <div dangerouslySetInnerHTML={{__html:postData.content.rendered}}></div>

@@ -6,8 +6,8 @@ import Layout from './Layout'
 */
 export default function NoMatch(){
     const location = useLocation();
-    return(
-        <Layout pageTitle="Page Not Found">
+        return (
+            <Layout pageMeta={{title: "Page not found"}}>
             <h1>Page not found</h1>
             <h3>No match for <code>{location.pathname}</code></h3>
         </Layout>)

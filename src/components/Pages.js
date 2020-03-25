@@ -23,10 +23,10 @@ class Pages extends Component{
     render(){
         const {pages, isLoaded} = this.state;
         if(!isLoaded){
-            return <Layout pageTitle="pages">Loading</Layout>
+            return <Layout pageMeta={{title: "pages"}}>Loading</Layout>
         }else{
             return(
-                <Layout pageTitle="pages">
+                <Layout pageMeta={{title: "pages"}}>
                 <Helmet title="Pages" />
                 <h1>Pages</h1>
                     <ul>

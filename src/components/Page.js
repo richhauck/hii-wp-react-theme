@@ -27,12 +27,18 @@ class Page extends Component{
     render(){
         const {data, isLoaded} = this.state;
         if(!isLoaded){
-            return <Layout>Loading</Layout>
+            return <Layout pageMeta={{
+                title:'',
+                pageClass: 'page'
+            }}>Loading</Layout>
         }else{
             const pageData = data[0];
 
             return(
-                <Layout pageTitle={pageData.title.rendered}>
+                <Layout pageMeta={{
+                    title:`${pageData.title.rendered}`,
+                    pageClass: 'page'
+                }}>
                     <h1>{pageData.title.rendered}</h1>
                     <div dangerouslySetInnerHTML={{__html:pageData.content.rendered}}></div>
                 </Layout>
